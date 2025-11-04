@@ -4,8 +4,8 @@ addpath('src')
 %% General parameters:
 
 fs = 250;               % Sampling frequency (Hz)
-n_curves = 70;          % Number of curves per family
-sigma = 150;            % Standard deviation (width of the curve)
+n_curves = 64;          % Number of curves per family
+sigma = 125;            % Standard deviation (width of the curve)
 alpha = 3;              % Skewness factor (higher = more right-skewed)
 noise_level = 0.08;     % Relative noise level (0 = no noise)
 
@@ -22,8 +22,8 @@ mu_family2 = 350;   % Mean time (ms) for family 2
 %% Plot the results:
 
 figure('Color','w'); hold on;
-plot(time, family1', 'Color', [.51 .80 .74 0.45]);
-plot(time, family2', 'Color', [1 .41 0.38 0.45]);
+plot(time, family1', 'Color', [.51 .80 .74 0.1]);
+plot(time, family2', 'Color', [1 .41 0.38 0.1]);
 
 % Plot mean curves for each family
 plot(time, mean(family1,1),'Color',[.51 .80 .74], 'LineWidth', 3);
@@ -44,8 +44,11 @@ if ~exist('data', 'dir')
 end
 
 % Generate filename based on parameters:
-filename = sprintf('data/family_1.mat');
-save(filename, 'time', 'family1');
+filename = sprintf('data/cond_1.mat');
+save(filename, 'family1');
 
-filename = sprintf('data/family_2.mat');
-save(filename, 'time', 'family2');
+filename = sprintf('data/cond_2.mat');
+save(filename, 'family2');
+
+filename = sprintf('data/time.mat');
+save(filename, 'time');

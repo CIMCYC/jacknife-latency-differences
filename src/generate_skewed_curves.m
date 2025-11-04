@@ -40,7 +40,7 @@ for i = 1:n_curves
 
     % Small random variation in mean and amplitude
     mu_i = mu + randn * 70;
-    amp_i = 1 + 0.2 * randn;
+    amp_i = 1 + 0.3 * randn;
 
     % Generate skewed curve
     curve = amp_i * skewed(time, mu_i);

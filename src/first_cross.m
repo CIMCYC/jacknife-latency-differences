@@ -1,4 +1,4 @@
-function lat = local_first_cross(curve, thr, tVec, idx0)
+function lat = first_cross(curve, thr, tVec, idx0)
 % Devuelve la latencia (tVec) del primer cruce del umbral ‘thr’.
 % Si no hay cruce válido devuelve NaN.
 

@@ -66,12 +66,12 @@ end
 % figure; histogram(latencies.differences(:,9),7)
 
 %% Estadística:
-[stats, values] = jacknife_stats(cfg, latencies);
+[stats values] = jacknife_stats(cfg, latencies);
 disp(stats);
 
 %% Representación gráfica:
 % Representamos gráficamente los resultados del análisis completo de
 % latencias:
 
-plot_differences(cfg,values)
+plot_differences(cfg,latencies,values)
 
