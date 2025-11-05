@@ -32,7 +32,6 @@ data.time = time;
 
 plot_data(cfg, data, 'Original curves');
 
-
 %% Suavizamos las curvas si es necesario:
 % Podemos aplicar un suavizado temporal a los datos para mitigar el ruido 
 % de las curvas. Tener en cuenta el tamaño de ventana y la frecuencia de
@@ -46,9 +45,9 @@ end
 % Representación gráfica de los datos suavizados:
 plot_data(cfg, data, 'Smoothed curves');
 
-%% Jacknife analysis:
+%% Jacknife analysis for latencies ans slopes:
 
-latencies = jacknife(cfg, data, time);
+[latencies, slopes] = jacknife(cfg, data, time);
 
 %% Test de normalidad:
 % Almacenamos los resultados en una tabla. En la columna Normality test
@@ -56,22 +55,17 @@ latencies = jacknife(cfg, data, time);
 % alpha = 0.05 (por defecto). Es decir, si podemos asumir que la
 % distribución de latencias se ha extraído de una distribución normal.
 
-if cfg.normality.flag
-    disp('Normality test results:');
-    normality_test = check_normality(cfg, latencies.differences);
-    disp(normality_test);
-end
+[norm_test_lat, norm_test_slo] = check_normality(cfg, latencies, slopes);
 
 % Histograma de latencias:
-% figure; histogram(latencies.differences(:,9),7)
+% figure; histogram(latencies.latencies_d(:,9),7)
 
-%% Estadística:
-[stats, values] = jacknife_stats(cfg, latencies);
-disp(stats);
+%% Jacknife-based latency and slope statistics:
+[lat_stats, slo_stats, values] = jacknife_stats(cfg, latencies, slopes);
 
 %% Representación gráfica:
 % Representamos gráficamente los resultados del análisis completo de
 % latencias:
 
-plot_differences(cfg,values)
-
+plot_latency_differences(cfg, values);
+plot_slopes(cfg, values, slopes);

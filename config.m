@@ -27,8 +27,8 @@ cfg.normality.alpha = .05;
 
 %% Intervalo de confianza:
 %  Definir el intervalo de confianza de los resultados:
-
 cfg.stats.ic = .05; % IC = 95%
+cfg.stats.alpha = .05;
 
 %% Correción por comparaciones multiples.
 %  Puesto que estamos realizando varios test estádisiticos para distintos
